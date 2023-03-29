@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Lista de pendientes</title>
+  </head>
+  <body>
+    <h1>Lista de pendientes</h1>
+    <form method="post" action="/add-task">
+      <label>
+        Tarea por hacer:
+        <input type="text" name="task">
+      </label>
+      <button type="submit">Agregar</button>
+    </form>
+    <% if (tasks.length > 0) { %>
+      <form method="post" action="/remove-task">
+        <ul>
+          <% tasks.forEach((task, index) => { %>
+            <li>
+              <label>
+                <input type="checkbox" name="indexes[]" value="<%= index %>">
+                <%= task %>
+              </label>
+            </li>
+          <% }) %>
+        </ul>
+        <button type="submit">Eliminar tareas seleccionadas</button>
+      </form>
+    <% } else { %>
+      <p>No hay tareas por hacer</p>
+    <% } %>
+  </body>
+</html>
